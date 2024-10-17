@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('/api/placeholder/1200/600');
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #ff69b4;
+            box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ff69b4;
+            text-shadow: 3px 3px #000, 5px 5px rgba(255,105,180,0.3);
+        }
+
+        h2 {
+            color: #ff69b4;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #000;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+
+        .cta-button {
+            background-color: #ff69b4;
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background-color: #000;
+            color: #ff69b4;
+            border: 2px solid #ff69b4;
+            box-shadow: 0 0 20px #ff69b4;
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            background-color: #2a2a2a;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            background-color: #1a1a1a;
+            border: 2px solid #ff69b4;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(255,105,180,0.3);
+        }
+
+        .feature h3 {
+            color: #ff69b4;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .services {
+            padding: 4rem 2rem;
+            background-color: #1a1a1a;
+        }
+
+        .service-item {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            border-left: 4px solid #ff69b4;
+            background-color: #2a2a2a;
+        }
+
+        .service-item h3 {
+            color: #ff69b4;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: #ff69b4;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .manifesto {
+            padding: 6rem 2rem;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            text-align: center;
+        }
+
+        .manifesto p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 1rem auto;
+            line-height: 1.8;
+        }
+
+        .heart-break {
+            font-size: 2rem;
+            margin: 2rem 0;
+        }
+
+        footer {
+            background-color: #000;
+            color: #ff69b4;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #ff69b4;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .glitch-text {
+            position: relative;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            opacity: 0.8;
+        }
+
+        .glitch-text::before {
+            color: #0ff;
+            animation: glitch 2s infinite;
+            clip: rect(44px, 450px, 56px, 0);
+        }
+
+        .glitch-text::after {
+            color: #f0f;
+            animation: glitch 3s infinite;
+            clip: rect(44px, 450px, 56px, 0);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-5px, 5px) }
+            40% { transform: translate(-5px, -5px) }
+            60% { transform: translate(5px, 5px) }
+            80% { transform: translate(5px, -5px) }
+            100% { transform: translate(0) }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1 class="floating">Manic Pixie Dream Marketing</h1>
+        <p class="tagline">"We're not like other agencies, we're a cool agency"</p>
+        <a href="#contact" class="cta-button">Embrace the Chaos</a>
+        <a href="#services" class="cta-button">Start Your Metamorphosis</a>
+    </section>
+
+    <section class="manifesto">
+        <h2>Our Manifesto</h2>
+        <p>In a world of corporate conformity, we're the black eyeliner streak across the status quo.</p>
+        <p>We don't just think outside the box - we set the box on fire and dance around it.</p>
+        <p>Your brand deserves more than just analytics. It deserves poetry, passion, and a playlist that makes your customers feel understood.</p>
+    </section>
+
+    <section class="features">
+        <h2>Why Choose Your Marketing Soulmate?</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>Unconventional Strategies</h3>
+                <p>We don't follow the mainstream. Our marketing approaches are as unique as your teenage diary entries. Each campaign is a beautiful disaster waiting to connect with your audience's soul.</p>
+            </div>
+            <div class="feature">
+                <h3>Authentic Storytelling</h3>
+                <p>Let's make your brand the protagonist in a story that's too real for the mainstream. We'll turn your corporate narrative into a coming-of-age indie film that everyone wants to quote.</p>
+            </div>
+            <div class="feature">
+                <h3>Digital Rebellion</h3>
+                <p>Social media strategies that break all the rules (in a good way). We'll make your content go viral faster than that song you can't get out of your head.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2 style="text-align: center;">Our Services (aka Your Brand's Therapy Sessions)</h2>
+        
+        <div class="service-item">
+            <h3>The Identity Crisis Package</h3>
+            <p>Complete brand overhaul for businesses ready to bare their soul. Includes:</p>
+            <ul>
+                <li>Existential brand analysis</li>
+                <li>Aesthetic mood boarding</li>
+                <li>Social media personality development</li>
+                <li>Content strategy that will make your competitors cry</li>
+            </ul>
+            <div class="price">Starting at $4,999 (emotional investment not included)</div>
+        </div>
+
+        <div class="service-item">
+            <h3>The Misunderstood Artist</h3>
+            <p>Perfect for brands that need to express themselves. Features:</p>
+            <ul>
+                <li>Avant-garde content creation</li>
+                <li>Guerrilla marketing tactics</li>
+                <li>Underground influencer partnerships</li>
+                <li>Viral moment manifestation</li>
+            </ul>
+            <div class="price">Starting at $2,999 (tears of joy included)</div>
+        </div>
+
+        <div class="service-item">
+            <h3>The Scene Kid Special</h3>
+            <p>Entry-level package for brands ready to break free:</p>
+            <ul>
+                <li>Social media makeover</li>
+                <li>Monthly content calendar</li>
+                <li>Basic brand therapy sessions</li>
+                <li>Engagement growth strategies</li>
+            </ul>
+            <div class="price">Starting at $1,999 (black nail polish not included)</div>
+        </div>
+    </section>
+
+    <div class="heart-break">💔</div>
+
+    <footer>
+        <p>Ready to make your brand the main character?</p>
+        <div class="social-links">
+            <a href="#">Instagram (where we post our feelings)</a>
+            <a href="#">Twitter (our daily crying session)</a>
+            <a href="#">TikTok (where we bare our soul)</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.8rem;">© 2024 Manic Pixie Dream Marketing - Because Normal Marketing Is So Mainstream</p>
+    </footer>
+</body>
+</html>
